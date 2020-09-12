@@ -1,0 +1,169 @@
+<!DOCKTYPE html>
+<html>
+
+<head>
+    <meta charset="UFT-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Learning ReactJS</title>
+</head>
+
+<body>
+    <h1>Using Live Server !</h1>
+
+    <div id="rootSimple"></div>
+    <br/>
+    <div id="rootFunction"></div>
+    <br/>
+    <div id="rootClassComponent"></div>
+    <br/>
+    <div id="root"></div>
+    <br/>
+    <div id="rootProps"></div>
+    <br/>
+    <div id="rootComponentPorps"></div>
+    <br/>
+    <div id="rootAspectProps"></div>
+    <br/>
+    <div id="rootSum"></div>
+
+    <script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+
+
+    <script type="text/babel">
+        const root = document.getElementById('root'); 
+
+        //Simple Example
+        let language = "ReactJS";
+        ReactDOM.render(<h2>Hello {language} !</h2>, rootSimple);
+
+        //Function Example
+        function FunctionExample(){
+
+            var exampleName = "Function";
+
+            return(
+                <div>
+                    <h2>Example of {exampleName} !</h2>
+                </div>
+            )
+        }
+
+        ReactDOM.render(<FunctionExample />, rootFunction);
+
+        //Class Component Example
+        class ClassComponent extends React.Component{
+            render(){
+                return( 
+                    <div>
+                        <h2> Class Component Test ! </h2>
+                    </div>
+                )
+            }
+        }
+
+        ReactDOM.render(<ClassComponent />, rootClassComponent);
+
+        //Two Class Component Example
+        class ComponentA extends React.Component{
+            render(){
+                return( 
+                    <h3>Class Component A</h3>
+                )
+            }
+        }
+
+        class ComponentB extends React.Component{
+            render(){
+                return( 
+                    <h3>Class Component B</h3>
+                )
+            }
+        }
+
+        class MyComponent extends React.Component{
+            render(){
+                return( 
+                    <div>
+                        <ComponentA />
+                        <hr/>
+                        <ComponentB />
+                    </div>
+                )
+            }
+        }
+
+        ReactDOM.render(<MyComponent />, root);
+
+        function FunctionWithProps(props){
+            return(
+                <div>
+                    <h2> Props example.</h2>
+                    {props.name}
+                    <br/>
+                    {props.gitlink}
+                </div>
+            )
+        }
+
+        ReactDOM.render(<FunctionWithProps name="Fabrício" gitlink="http://github.com/xFaabricio/" />, rootProps);
+
+        class ComponentPorps extends React.Component{
+            render(){
+                return(
+                    <div>
+                        <h2>Using props in Class Component previously declared in function.</h2>
+                        {this.props.name}
+                        <br/>
+                        {this.props.gitlink}
+                    </div>
+                )
+            }
+        }
+
+        ReactDOM.render(<ComponentPorps name="Fabrício" gitlink="http://github.com/xFaabricio/" />, rootComponentPorps);
+
+        function Friend(props){
+            return(
+                <div>
+                    Name: {props.name}
+                    <br/>
+                </div>
+            )
+        }
+
+        function App(){
+            return(
+                <div>
+                    <h2>List of Friends</h2>
+                    <Friend name="Felipe"/>
+                    <Friend name="Allan"/>
+                    <Friend name="Daniel"/>
+                </div>
+            )
+        }
+
+        ReactDOM.render(<App />, rootAspectProps);
+
+        class Sum extends React.Component{
+            render(){
+                return(
+                    <div>
+                        <p>The result of {this.props.a} + {this.props.b} is {this.props.a + this.props.b}</p>
+                    </div>
+                )
+            }
+        }
+
+        ReactDOM.render(<Sum a={10} b={20} />, rootSum);
+
+    </script>
+
+
+
+</body>
+
+</html>
